@@ -1,0 +1,27 @@
+- include: CentOS.yml
+  when: "ansible_os_family == 'RedHat'"
+  tags: secure
+
+- include: Ubuntu.yml
+  when: "ansible_os_family == 'Debian'"
+  tags: secure
+
+- name: "/var/log/rkhunter directory create"
+  file:
+    path: "/var/log/rkhunter"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: secure
+
+- name: "rkhunter --update"
+  ignore_errors: true
+  command: rkhunter --update
+  check_mode: no
+  tags: secure
+
+- name: "rkhunter --propupd"
+  command: rkhunter --propupd
+  check_mode: no
+  tags: secure
