@@ -1,0 +1,8 @@
+---
+rkhunter_script_whitelist:
+  - /usr/bin/which
+  - /bin/egrep
+  - /bin/fgrep
+  - /bin/which
+  - /usr/bin/ldd
+  - /usr/sbin/adduser
